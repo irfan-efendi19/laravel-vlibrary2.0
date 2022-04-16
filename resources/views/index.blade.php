@@ -6,9 +6,9 @@
 
             <div class="left-side-text-container">
                 <div class="title">
-                    <h2 class="welcome-msg type-1">Selamat datang di</h2>
-                    <h2 class="welcome-msg type-1">Perpustakaan Online</h2>
-                    <h2 class="welcome-msg type-1"><span class="text-primary">V-LIBRARY</span></h2>
+                    <h2 class="welcome-msg type-1">Welcome to</h2>
+                    <h2 class="welcome-msg type-1"><span class="text-primary">{{ env("APP_NAME") }}</span> System</h2>
+                    <h2 class="welcome-msg type-1">of {{ env("APP_OWNER") }}</h2>
                 </div>
                 <div class="captions mt-4">
                     <p class="captions-msg">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus sapiente et possimus aliquam officiis, quia nulla tempora facilis, unde expedita placeat necessitatibus blanditiis aperiam cumque. Iure explicabo est at in!</p>
