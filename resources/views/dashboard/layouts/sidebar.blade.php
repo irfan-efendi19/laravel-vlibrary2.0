@@ -49,6 +49,12 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link {{ Request::is('dashboard/books') ? 'active' : '' }}" href="/dashboard/books">
+              <span data-feather="grid"></span>
+              Manage Books
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link {{ Request::is('dashboard/categories') ? 'active' : '' }}" href="/dashboard/categories">
               <span data-feather="grid"></span>
               Manage Categories

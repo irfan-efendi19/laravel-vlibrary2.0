@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId("author_id");
             $table->foreignId("category_id");
             $table->text("body");
+            $table->text("image")->nullable();
             $table->string("publisher");
             $table->string("published_at");
             $table->integer("total_pages");

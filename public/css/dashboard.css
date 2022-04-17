@@ -7,7 +7,6 @@ body {
 trix-toolbar [data-trix-button-group="file-tools"] {
     display: none;
 }
-
   
 * {
     font-family: 'Poppins', sans-serif;

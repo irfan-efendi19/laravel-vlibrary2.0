@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminBooksController;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\DashboardLoanController;
 use App\Http\Controllers\DashboardProfileController;
@@ -20,11 +21,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware(["auth","verified"]);
 Route::get('/', [SiteController::class, "index"])->name("home")->middleware("verified");
 Route::get('/books', [SiteController::class, "books"])->name("books")->middleware(["auth","verified"]);
 Route::get('/books/{books:slug}', [SiteController::class, "book"])->name("books")->middleware(["auth","verified"]);
@@ -37,6 +33,7 @@ Route::post("/books/{books:slug}/comment", [SiteController::class, "comments"])-
 Route::resource('/dashboard/loan', DashboardLoanController::class)->middleware(["auth","verified"]);
 Route::resource('/dashboard/profile', DashboardProfileController::class)->except(["create", "store"]);
 Route::resource('/dashboard/categories', AdminCategoryController::class)->except("show")->middleware("isAdmin");
+Route::resource('/dashboard/books', AdminBooksController::class)->middleware("isAdmin");
 
 Route::get('/dashboard/requests', [LoanRequestsController::class, "index"])->middleware("isAdmin");
 Route::get('/dashboard/requests/{loans:id}/accept', [LoanRequestsController::class, "accept"])->middleware("isAdmin");
