@@ -9,7 +9,7 @@
                     <input type="hidden" name="category" value="{{ request('category') }}">
                 @endif
                 @if (request(["author"]))
-                    <input type="hidden" name="user" value="{{ request('user') }}">
+                    <input type="hidden" name="author" value="{{ request('author') }}">
                 @endif
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Search a book..." name="search">
@@ -24,7 +24,7 @@
               
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                     @foreach ($authors as $a)
-                        <li><a class="dropdown-item" href="/books?author={{ $a->name }}">{{ $a->name }}</a></li>   
+                        <li><a class="dropdown-item" href="/books?author={{ $a->slug }}">{{ $a->name }}</a></li>   
                     @endforeach
                 </ul>
             </div>

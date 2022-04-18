@@ -39,7 +39,7 @@ class Books extends Model
 
         $query->when($filters['author'] ?? false, function($query, $author) { 
             return $query->whereHas("author", function($query) use ($author) {
-                $query->where('name',$author);
+                $query->where('slug',$author);
             });
         });
     }

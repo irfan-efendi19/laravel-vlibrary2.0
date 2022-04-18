@@ -11,6 +11,12 @@
       </div>
     @endif
 
+    @if (session()->has("warning"))
+      <div class="alert alert-warning col-lg-8" role="alert">
+        {{ session("warning") }}
+      </div>
+    @endif
+
     <div class="table-responsive col-lg-8">
         <a href="/dashboard/books/create" class="btn btn-success mb-2">New</a>
         <table class="table table-striped table-sm">
@@ -19,6 +25,7 @@
               <th></th>
               <th scope="col">Title</th>
               <th scope="col">Category</th>
+              <th scope="col">Units</th>
               <th scope="col">Created at</th>
               <th scope="col"></th>
             </tr>
@@ -29,6 +36,7 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $b->title }}</td>
                     <td>{{ $b->category->name }}</td>
+                    <td>{{ $b->total_units }} pcs.</td>
                     <td>{{ $b->created_at }}</td>
                     <td>
                         

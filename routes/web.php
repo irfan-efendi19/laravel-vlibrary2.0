@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminAuthorController;
 use App\Http\Controllers\AdminBooksController;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\DashboardLoanController;
@@ -34,6 +35,7 @@ Route::resource('/dashboard/loan', DashboardLoanController::class)->middleware([
 Route::resource('/dashboard/profile', DashboardProfileController::class)->except(["create", "store"]);
 Route::resource('/dashboard/categories', AdminCategoryController::class)->except("show")->middleware("isAdmin");
 Route::resource('/dashboard/books', AdminBooksController::class)->middleware("isAdmin");
+Route::resource('/dashboard/authors', AdminAuthorController::class)->except("show")->middleware("isAdmin");
 
 Route::get('/dashboard/requests', [LoanRequestsController::class, "index"])->middleware("isAdmin");
 Route::get('/dashboard/requests/{loans:id}/accept', [LoanRequestsController::class, "accept"])->middleware("isAdmin");

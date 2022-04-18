@@ -2,7 +2,7 @@
 
 @section('container')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">All Categories</h1>
+    <h1 class="h2">All Authors</h1>
 </div>
 
 @if (session()->has("success"))
@@ -10,42 +10,35 @@
     {{ session("success") }}
   </div>
 @endif
+
 @if (session()->has("warning"))
   <div class="alert alert-warning col-lg-6" role="alert">
     {{ session("warning") }}
   </div>
 @endif
-{{-- {{ dd($x) }} --}}
+
 <div class="table-responsive col-lg-8">
-    <a href="/dashboard/categories/create" class="btn btn-success mb-2">New</a>
+    <a href="/dashboard/authors/create" class="btn btn-success mb-2">New</a>
     <table class="table table-striped table-sm">
       <thead>
         <tr>
           <th></th>
-          <th scope="col">Category Name</th>
-          <th scope="col">Total of Related Books</th>
-          <th scope="col">Created at</th>
+          <th scope="col">Full Name</th>
+          <th scope="col">Region</th>
           <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
-        @foreach($categories as $c)
+        @foreach($authors as $a)
             <tr>
                 <td>{{ $loop->iteration }}</td>
-                <td>{{ $c->name }}</td>
+                <td>{{ $a->name }}</td>
+                <td>{{ $a->region }}</td>
                 <td>
-                  {{ $books->where("category_id", $c->id)->count() }}
-                </td>
-                <td>{{ $c->created_at }}</td>
-                <td>
-                    
-                    {{-- <a href="/dashboard/categories/{{ $c->slug }}" class="badge bg-primary">
-                        <span data-feather="eye"></span>
-                    </a> --}}
-                    <a href="/dashboard/categories/{{ $c->slug }}/edit" class="badge bg-warning text-decoration-none">
+                    <a href="/dashboard/authors/{{ $a->slug }}/edit" class="badge bg-warning text-decoration-none">
                         EDIT
                     </a>
-                    <form action="/dashboard/categories/{{ $c->slug }}" method="POST" class="d-inline">
+                    <form action="/dashboard/authors/{{ $a->slug }}" method="POST" class="d-inline">
                       @method('delete')
                       @csrf
                       <button class="badge bg-danger border-0" onclick="return confirm('Are you sure want to delete ?');">DELETE</button>

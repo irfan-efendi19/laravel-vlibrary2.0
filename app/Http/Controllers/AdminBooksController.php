@@ -70,9 +70,13 @@ class AdminBooksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $books = Books::where( "slug", $slug )->get();
+
+        return view("dashboard.books.show", [
+            "books" => $books,
+        ]);
     }
 
     /**
@@ -81,9 +85,15 @@ class AdminBooksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $books = Books::where( "slug", $slug )->get();
+
+        return view("dashboard.books.edit", [
+            "books" => $books,
+            "authors" => Authors::all(),
+            "categories" => Categories::all(),
+        ]);
     }
 
     /**
@@ -93,9 +103,30 @@ class AdminBooksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        //
+        $book = Books::where( "slug", $slug )->get();
+        $book_title = $book[0]->title;
+
+        $rules = [
+            "title" => "required|max:255",
+            "slug" => "required",
+            "author_id" => "required",
+            "category_id" => "required",
+            "body" => "required",
+            "publisher" => "required",
+            "published_at" => "required",
+            "total_pages" => "required",
+            "total_units" => "required",
+        ];
+
+        $validatedData = $request->validate($rules);
+        
+        // $validatedData["id"] = $author[0]->id;
+        
+        Books::where( "slug", $slug )->update($validatedData);
+
+        return redirect("/dashboard/books")->with("success", "[ $book_title ] has been updated publicly");
     }
 
     /**
@@ -104,8 +135,13 @@ class AdminBooksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        //
+        $books = Books::where( "slug", $slug )->get();
+
+        $title = $books[0]->title;
+        Books::destroy($books);
+
+        return redirect("/dashboard/books")->with("warning", "[ $title ] has been deleted permanently !");
     }
 }

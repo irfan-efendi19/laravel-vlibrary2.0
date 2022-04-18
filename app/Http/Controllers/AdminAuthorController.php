@@ -2,27 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Books;
-use App\Models\Categories;
+use App\Models\Authors;
 use Illuminate\Http\Request;
 
-class AdminCategoryController extends Controller
+class AdminAuthorController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Categories $category)
+    public function index()
     {
         $this->authorize("isAdmin");
 
-        $categories = Categories::all();
-        $books = Books::all();
-
-        return view("dashboard.categories.index",[
-            "categories" => $categories,
-            "books" => $books[0]
+        return view("dashboard.authors.index",[
+            "authors" => Authors::all()
         ]);
     }
 
@@ -33,7 +28,7 @@ class AdminCategoryController extends Controller
      */
     public function create()
     {
-        return view("dashboard.categories.create");
+        return view("dashboard.authors.create");
     }
 
     /**
@@ -46,16 +41,17 @@ class AdminCategoryController extends Controller
     {
         $rules = [
             "name" => "required|max:255",
-            "slug" => "required"
+            "slug" => "required",
+            "region" => "required"
         ];
 
         $validatedData = $request->validate($rules);
         
         // $validatedData["id"] = $category[0]->id;
         
-        Categories::create($validatedData);
+        Authors::create($validatedData);
 
-        return redirect("/dashboard/categories")->with("success", "New category has been uploaded publicly !");
+        return redirect("/dashboard/authors")->with("success", "New author has been provided publicly !");
     }
 
     /**
@@ -75,14 +71,12 @@ class AdminCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit($id)
     {
-        $category = Categories::where( "slug", $slug )->get();
+        $author = Authors::where("slug", $id)->get();
 
-        return view("dashboard.categories.edit", [
-            "category_name" => $category[0]->name,
-            "category_slug" => $category[0]->slug,
-            // "categories" => Category::all(),
+        return view("dashboard.authors.edit", [
+            "author" => $author
         ]);
     }
 
@@ -95,21 +89,22 @@ class AdminCategoryController extends Controller
      */
     public function update(Request $request, $slug)
     {
-        $category = Categories::where( "slug", $slug )->get();
-        $category_name = $category[0]->name;
+        $author = Authors::where( "slug", $slug )->get();
+        $author_name = $author[0]->name;
 
         $rules = [
             "name" => "required|max:255",
+            "region" => "required",
             "slug" => "required"
         ];
 
         $validatedData = $request->validate($rules);
         
-        $validatedData["id"] = $category[0]->id;
+        $validatedData["id"] = $author[0]->id;
         
-        Categories::where( "slug", $slug )->update($validatedData);
+        Authors::where( "slug", $slug )->update($validatedData);
 
-        return redirect("/dashboard/categories")->with("success", "[ $category_name ] has been updated publicly !");
+        return redirect("/dashboard/authors")->with("success", "[ $author_name ] has been updated publicly !");
     }
 
     /**
@@ -120,10 +115,11 @@ class AdminCategoryController extends Controller
      */
     public function destroy($slug)
     {
-        $category = Categories::where( "slug", $slug )->get();
-        $category_name = $category[0]->name;
-        Categories::destroy($category);
+        $author = Authors::where( "slug", $slug )->get();
+        $author_name = $author[0]->name;
 
-        return redirect("/dashboard/categories")->with("warning", "[ $category_name ] has been deleted !");
+        Authors::destroy($author);
+
+        return redirect("/dashboard/authors")->with("warning", "[ $author_name ] has been deleted !");
     }
 }
