@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Books;
 use App\Models\Comments;
 use App\Models\Likes;
-
+use App\Models\User;
 use Illuminate\Http\Request;
+
+use function Symfony\Component\String\b;
 
 class DashboardProfileController extends Controller
 {
@@ -38,7 +40,7 @@ class DashboardProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    
     }
 
     /**
@@ -58,8 +60,10 @@ class DashboardProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
+        
+
         return view("dashboard.profile.edit");
     }
 
@@ -70,9 +74,27 @@ class DashboardProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            "studentID_image" => "required|file|max:2024"
+        ]);
+
+        if($request->name != auth()->user()->name) {
+            $validatedData["name"] = 'required|max:255|unique:users';
+        }
+
+        if($request->username != auth()->user()->username) {
+            $validatedData["username"] = 'required|max:255|unique:users';
+        }
+        
+        if($request->file("studentID_image")) {
+            $validatedData["studentID_image"] = $request->file("studentID_image")->store("studentID_image/" . auth()->user()->id);
+        }
+        
+        User::where("id", auth()->user()->id)->update($validatedData);
+        
+        return redirect("/dashboard/profile");
     }
 
     /**

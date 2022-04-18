@@ -11,6 +11,11 @@
                 {{ session("success") }}
             </div>
         @endif
+        @if (session()->has("warning"))
+            <div class="alert alert-warning col-md-6" role="alert">
+                {{ session("warning") }}
+            </div>
+        @endif
         @if (session()->has("failed"))
             <div class="alert alert-danger col-md-6" role="alert">
                 {{ session("failed") }}
@@ -29,8 +34,16 @@
                     @endif
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title mb-3">{{ $l->book->title }}</h5>
+                    <h5 class="card-title mb-3">{{ $l->book->title }} - {{ $l->book->author->name }}</h5>
                     <p class="card-text"><strong>Student ID : </strong>{{ $l->studentId }}</p>
+                    <p class="card-text"><strong>Attachment : </strong></p>
+                    @if(auth()->user()->studentID_image)
+                        <div style="max-height: 500px; overflow: hidden;" class="mb-3">
+                            <img src="{{ asset('storage/' . auth()->user()->studentID_image) }}" class="img-fluid w-50" alt="inet_err">
+                        </div>
+                    @else
+                        <p class="text-danger"><i class="bi bi-exclamation-circle"></i> Student ID not attached</p>
+                    @endif
                     <p class="card-text d-inline"><strong>Message :</strong> {!! $l->body !!}</p>
                     @if($l->acceptance_status === NULL)
                         <a href="/dashboard/requests/{{ $l->id }}/accept" class="btn btn-success">Accept</a>

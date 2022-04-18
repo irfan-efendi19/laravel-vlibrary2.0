@@ -22,7 +22,7 @@ class AdminCategoryController extends Controller
 
         return view("dashboard.categories.index",[
             "categories" => $categories,
-            "books" => $books[0]
+            "books" => $books
         ]);
     }
 

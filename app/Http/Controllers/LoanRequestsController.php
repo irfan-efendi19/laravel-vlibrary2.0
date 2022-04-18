@@ -20,7 +20,7 @@ class LoanRequestsController extends Controller
 
     public function reject(Loans $loans) {
         Loans::where("id", $loans->id)->update(["acceptance_status" => 0]);
-        return redirect("/dashboard/requests")->with("success", "A request was rejected !");
+        return redirect("/dashboard/requests")->with("warning", "A request was rejected !");
     }
 
     public function cancel(Loans $loans) {
@@ -35,6 +35,6 @@ class LoanRequestsController extends Controller
         }
 
         Loans::where("id", $loans->id)->update(["acceptance_status" => NULL]);
-        return redirect("/dashboard/requests")->with("success", "A request was cancelled !");
+        return redirect("/dashboard/requests")->with("warning", "A request was cancelled !");
     }
 }

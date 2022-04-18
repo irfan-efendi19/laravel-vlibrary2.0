@@ -34,7 +34,7 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $c->name }}</td>
                 <td>
-                  {{ $books->where("category_id", $c->id)->count() }}
+                  {{ $books->where("category_id", $c->id)->count() }} unit(s)
                 </td>
                 <td>{{ $c->created_at }}</td>
                 <td>

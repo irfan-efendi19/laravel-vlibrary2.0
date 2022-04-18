@@ -19,7 +19,11 @@
                     @endif
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">{{ $l->book->title }}</h5>
+                    <h5 class="card-title">{{ $l->book->title }} - {{ $l->book->author->name }}</h5>
+                    <p class="card-text"><strong>Attachment : </strong></p>
+                    <div style="max-height: 500px; overflow: hidden;" class="mb-3">
+                        <img src="{{ asset('storage/' . auth()->user()->studentID_image) }}" class="img-fluid w-50" alt="inet_err">
+                    </div>
                     <p class="card-text d-inline"><strong>Message :</strong> {!! $l->body !!}</p>
 
                     @if($l->acceptance_status === NULL)

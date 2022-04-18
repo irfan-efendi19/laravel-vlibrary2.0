@@ -29,6 +29,17 @@
             </div>
 
             <div class="mb-3">
+                <label for="studentID_image" class="form-label">Student ID</label>
+                @if(auth()->user()->studentID_image)
+                    <div style="max-height: 500px; overflow: hidden;">
+                        <img src="{{ asset('storage/' . auth()->user()->studentID_image) }}" class="img-fluid w-50" alt="inet_err">
+                    </div>
+                @else
+                    <p class="text-danger"><i class="bi bi-exclamation-circle"></i> Please upload your Student ID</p>
+                @endif
+            </div>
+
+            <div class="mb-3">
                 <label for="email" class="form-label">Registered Email</label>
                 <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email"
                 value="{{ auth()->user()->email }}" readonly>

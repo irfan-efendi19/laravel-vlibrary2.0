@@ -35,17 +35,6 @@
             </div>
 
             <div class="mb-3">
-                <label for="image" class="form-label">Student ID Card</label>
-                <input class="form-control @error('body') is-invalid @enderror" type="file" id="image" name="image">
-
-                @error("image")
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
-
-            <div class="mb-3">
                 <label for="body" class="form-label">Why are you interested to loan this book ?</label>
                 <input id="body" type="hidden" name="body" class="@error('body') is-invalid @enderror" value="{{ old('body') }}">
                 <trix-editor input="body"></trix-editor>

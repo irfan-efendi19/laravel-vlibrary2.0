@@ -25,6 +25,7 @@
           <th></th>
           <th scope="col">Full Name</th>
           <th scope="col">Region</th>
+          <th scope="col">Total of Related Books</th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -34,6 +35,7 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $a->name }}</td>
                 <td>{{ $a->region }}</td>
+                <td>{{ $books->where("author_id", $a->id)->count() }} unit(s)</td>
                 <td>
                     <a href="/dashboard/authors/{{ $a->slug }}/edit" class="badge bg-warning text-decoration-none">
                         EDIT

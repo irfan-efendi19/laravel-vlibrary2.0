@@ -44,6 +44,10 @@ class DashboardLoanController extends Controller
     {
         $loan_limit = Loans::where("user_id", auth()->user()->id)->where('acceptance_status', '!=' , 0)->orWhereNull('acceptance_status')->get()->count();
 
+        if(!auth()->user()->studentID_image) {
+            return redirect("/dashboard/loan/create")->with("failed", "Please upload your Student ID File to borrow a book");
+        }
+
         if($loan_limit < 2) {
             $validatedData = $request->validate([
                 "book_id" => "required",

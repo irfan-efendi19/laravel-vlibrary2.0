@@ -32,7 +32,7 @@ Route::post('/books/{books:slug}', [SiteController::class, "likes"])->name("book
 Route::post("/books/{books:slug}/comment", [SiteController::class, "comments"])->middleware(["auth","verified"]);
 
 Route::resource('/dashboard/loan', DashboardLoanController::class)->middleware(["auth","verified"]);
-Route::resource('/dashboard/profile', DashboardProfileController::class)->except(["create", "store"]);
+Route::resource('/dashboard/profile', DashboardProfileController::class);
 Route::resource('/dashboard/categories', AdminCategoryController::class)->except("show")->middleware("isAdmin");
 Route::resource('/dashboard/books', AdminBooksController::class)->middleware("isAdmin");
 Route::resource('/dashboard/authors', AdminAuthorController::class)->except("show")->middleware("isAdmin");

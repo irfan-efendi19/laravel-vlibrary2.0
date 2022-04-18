@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Authors;
+use App\Models\Books;
 use Illuminate\Http\Request;
 
 class AdminAuthorController extends Controller
@@ -16,8 +17,11 @@ class AdminAuthorController extends Controller
     {
         $this->authorize("isAdmin");
 
+        $books = Books::all();
+
         return view("dashboard.authors.index",[
-            "authors" => Authors::all()
+            "authors" => Authors::all(),
+            "books" => $books
         ]);
     }
 
