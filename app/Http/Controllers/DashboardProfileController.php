@@ -20,8 +20,11 @@ class DashboardProfileController extends Controller
      */
     public function index()
     {
-        $total_loans = Loans::where("user_id", auth()->user()->id)->where("acceptance_status", 1)->count();
+        $current_loans = Loans::where("user_id", auth()->user()->id)->where("acceptance_status", 1)->count();
+        $total_loans = Loans::where("user_id", auth()->user()->id)->where("acceptance_status", 2)->count();
+        
         return view("dashboard.profile.index", [
+            "current_loans" => $current_loans,
             "total_loans" => $total_loans
         ]);
     }
