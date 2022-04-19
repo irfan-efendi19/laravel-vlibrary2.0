@@ -66,6 +66,12 @@
               Manage Books
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link {{ Request::is('dashboard/developers*') ? 'active' : '' }}" href="/dashboard/developers">
+              <span data-feather="grid"></span>
+              Developers List
+            </a>
+          </li>
         </ul>
       @endcan
     </div>

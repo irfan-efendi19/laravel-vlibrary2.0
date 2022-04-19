@@ -14,14 +14,14 @@ class SiteController extends Controller
 {
     public function index() {
         return view("index", [
-            "name" => "V-Library",
+            "name" => env("APP_NAME"),
             "pageName" => "Home"
         ]);
     }
 
     public function books() {
         return view("books", [
-            "name" => "V-Library",
+            "name" => env("APP_NAME"),
             "pageName" => "Books",
             "books" => Books::latest()->filter(request(["search", "category", "author"]))->paginate(6)->withQueryString(),
             "authors" => Authors::all(),
@@ -55,7 +55,7 @@ class SiteController extends Controller
 
     public function categories() {
         return view("categories", [
-            "name" => "V-Library",
+            "name" => env("APP_NAME"),
             "pageName" => "Categories",
             "categories" => Categories::all()
         ]);
@@ -97,4 +97,10 @@ class SiteController extends Controller
         return redirect("/books/$books->slug")->with("success", "Your comment has been uploaded publicly !");
     }
 
+    public function developer() {
+        return view("developer",[
+            "name" => env("APP_NAME"),
+            "pageName" => "Developer"
+        ]);
+    }
 }

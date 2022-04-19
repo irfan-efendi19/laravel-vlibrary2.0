@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminBooksController;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\DashboardLoanController;
 use App\Http\Controllers\DashboardProfileController;
+use App\Http\Controllers\DevelopersListController;
 use App\Http\Controllers\LoanRequestsController;
 use App\Http\Controllers\SiteController;
 
@@ -26,7 +27,6 @@ Route::get('/', [SiteController::class, "index"])->name("home")->middleware("ver
 Route::get('/books', [SiteController::class, "books"])->name("books")->middleware(["auth","verified"]);
 Route::get('/books/{books:slug}', [SiteController::class, "book"])->name("books")->middleware(["auth","verified"]);
 Route::get('/categories', [SiteController::class, "categories"])->name("categories")->middleware(["auth","verified"]);
-Route::get('/categories', [SiteController::class, "categories"])->name("categories")->middleware(["auth","verified"]);
 
 Route::post('/books/{books:slug}', [SiteController::class, "likes"])->name("books");
 Route::post("/books/{books:slug}/comment", [SiteController::class, "comments"])->middleware(["auth","verified"]);
@@ -36,6 +36,7 @@ Route::resource('/dashboard/profile', DashboardProfileController::class);
 Route::resource('/dashboard/categories', AdminCategoryController::class)->except("show")->middleware("isAdmin");
 Route::resource('/dashboard/books', AdminBooksController::class)->middleware("isAdmin");
 Route::resource('/dashboard/authors', AdminAuthorController::class)->except("show")->middleware("isAdmin");
+Route::resource('/dashboard/developers', DevelopersListController::class)->middleware("isAdmin");
 
 Route::get('/dashboard/requests', [LoanRequestsController::class, "index"])->middleware("isAdmin");
 Route::get('/dashboard/requests/{loans:id}/accept', [LoanRequestsController::class, "accept"])->middleware("isAdmin");
