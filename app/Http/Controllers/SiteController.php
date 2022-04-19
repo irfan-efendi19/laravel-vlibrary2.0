@@ -40,6 +40,7 @@ class SiteController extends Controller
             "title" => $books->title,
             "slug" => $books->slug,
             "body" => $books->body,
+            "book_image" => $books->book_image,
             "category_name" => $books->category->name,
             "author_name" => $books->author->name,
             "publisher" => $books->publisher,

@@ -22,8 +22,8 @@
                         </div>
                         {{-- {{ dd(asset('storage/' . $blogs[0]->image)) }} --}}
 
-                        @if($b->image != NULL)
-                            <img src="{{ asset('storage/' . $b->image) }}" class="img-fluid" alt="inet_err">
+                        @if($b->book_image != NULL)
+                            <img src="{{ asset('storage/' . $b->book_image) }}" class="img-fluid" alt="inet_err">
                         @else
                             <img src="https://source.unsplash.com/1200x400?{{ $b->category->name }}" class="img-fluid" alt="inet_err" style="height: 300px;">
                         @endif

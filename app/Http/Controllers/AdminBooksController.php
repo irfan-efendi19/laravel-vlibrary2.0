@@ -52,12 +52,12 @@ class AdminBooksController extends Controller
             "total_pages" => "required",
             "total_units" => "required",
             "category_id" => "required",
-            "image" => "image|file|max:1024",
-            "body" => "required"
+            "book_image" => "required|image|file|max:2024",
+            "body" => "required",
         ]);
 
-        if($request->file('image')) {
-            $validatedData["image"] = $request->file("image")->store('books-image');
+        if($request->file("book_image")) {
+            $validatedData["book_image"] = $request->file("book_image")->store("books_image/" . $request["title"]);
         }
         
         Books::create($validatedData);
@@ -122,8 +122,6 @@ class AdminBooksController extends Controller
         ];
 
         $validatedData = $request->validate($rules);
-        
-        // $validatedData["id"] = $author[0]->id;
         
         Books::where( "slug", $slug )->update($validatedData);
 

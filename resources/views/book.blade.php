@@ -25,7 +25,11 @@
                     <a href='#' class="text-white text-decoration-none">{{ $category_name }}</a>
                 </div>
                 
-                <img src="https://source.unsplash.com/1200x400?book" class="img-fluid" alt="inet_err" style="height: 300px;">
+                @if($book_image)
+                    <img src="{{ asset('storage/' . $book_image) }}" class="img-fluid" alt="inet_err" style="height: 300px;">
+                @else
+                    <img src="https://source.unsplash.com/1200x400?book" class="img-fluid" alt="inet_err" style="height: 300px;">
+                @endif
             </div>
             
             <article class="my-4">

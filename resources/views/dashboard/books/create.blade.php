@@ -111,10 +111,10 @@
             </div>
 
             <div class="mb-3">
-                <label for="image" class="form-label">Book image</label>
-                <input class="form-control @error('body') is-invalid @enderror" type="file" id="image" name="image">
+                <label for="book_image" class="form-label">Book image</label>
+                <input class="form-control @error('book_image') is-invalid @enderror" type="file" id="book_image" name="book_image">
 
-                @error("image")
+                @error("book_image")
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>

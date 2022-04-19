@@ -47,7 +47,7 @@ class DashboardLoanController extends Controller
      */
     public function store(Request $request)
     {
-        $loan_limit = Loans::where("user_id", auth()->user()->id)->where('acceptance_status', '!=' , 0)->orWhereNull('acceptance_status')->get()->count();
+        $loan_limit = Loans::where("user_id", auth()->user()->id)->where('acceptance_status', '!=' , 0)->where('acceptance_status', '!=' , 2)->orWhereNull('acceptance_status')->get()->count();
         $target_book_stock = Books::where("id", $request->book_id)->get();
 
         if($target_book_stock[0]->total_units === 0) {

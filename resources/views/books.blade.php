@@ -40,8 +40,12 @@
                             <a href='/books?category={{ $b->category->name }}' class="text-white text-decoration-none">{{ $b->category->name }}</a>
                         </div>
 
-                        <img src="https://source.unsplash.com/1200x400?book" class="img-fluid" alt="inet_err" style="height: 300px;">
-                        
+                        @if($b->book_image)
+                            <img src="{{ asset('storage/' . $b->book_image) }}" class="img-fluid" alt="inet_err" style="height: 300px;">
+                        @else
+                            <img src="https://source.unsplash.com/1200x400?book" class="img-fluid" alt="inet_err" style="height: 300px;">
+                        @endif
+
                         <div class="card-body">
                             <h6 class="card-title">{{ $b->title }}</h6>
                             <p class="card-text">by <strong>{{ $b->author->name }}</strong></p>
