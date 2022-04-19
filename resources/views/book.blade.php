@@ -12,8 +12,13 @@
                     <i class="{{ $liked == 0 ? 'bi bi-heart' : 'bi bi-heart-fill' }}"></i>
                     {{ $likes_total }}
                 </button>
-                <br>
+                @if($total_units !== 0)
+                    <a href="/dashboard/loan/create" class="btn btn-success">Borrow this Book</a>
+                @else
+                    <p class="text-danger mt-4">This book is out of stock !</p>
+                @endif
             </form>
+            
             
             <div class="mt-4">
                 <div class="position-absolute px-3 py-2" style="background-color: rgba(0, 0, 0, 0.7); border-bottom-right-radius: 10px;">

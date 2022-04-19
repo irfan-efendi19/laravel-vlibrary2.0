@@ -70,14 +70,14 @@
 
         <div class="p-0 d-flex justify-content-between dashboard-cards-container mt-4">
             <div class="child-container item-1">
-                <h4><i class="bi bi-book-half me-2"></i> 0</h4>
-                <h6 class="mt-3">Total of Published Blogs</h6>
+                <h4><i class="bi bi-book-half me-2"></i> </h4>
+                <h6 class="mt-3">Total of Books Borrowed</h6>
             </div>
 
             <div class="child-container item-2">
                 
-                <h4><i class="bi bi-heart-fill me-2"></i>0</h4>
-                <h6 class="mt-3">Total of Likes</h6>
+                <h4><i class="bi bi-eyeglasses"></i> {{ $total_loans }}</h4>
+                <h6 class="mt-3">Total of Books Currently Borrowed</h6>
             </div>
 
             <div class="child-container item-3">

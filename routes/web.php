@@ -41,5 +41,6 @@ Route::get('/dashboard/requests', [LoanRequestsController::class, "index"])->mid
 Route::get('/dashboard/requests/{loans:id}/accept', [LoanRequestsController::class, "accept"])->middleware("isAdmin");
 Route::get('/dashboard/requests/{loans:id}/reject', [LoanRequestsController::class, "reject"])->middleware("isAdmin");
 Route::get('/dashboard/requests/{loans:id}/cancel', [LoanRequestsController::class, "cancel"])->middleware("isAdmin");
+Route::get('/dashboard/requests/{loans:id}/done', [LoanRequestsController::class, "done"])->middleware("isAdmin");
 
 Auth::routes(['verify' => true]);

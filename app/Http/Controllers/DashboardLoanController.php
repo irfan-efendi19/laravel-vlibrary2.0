@@ -16,12 +16,14 @@ class DashboardLoanController extends Controller
      */
     public function index()
     {
-        $loans = Loans::where("user_id", auth()->user()->id)->get();
+        $loans = Loans::where("user_id", auth()->user()->id)->latest()->get();
         $pickup_deadline = Carbon::tomorrow();
+        $return_deadline = Carbon::today()->addDays(7);
 
         return view("dashboard.loans.index", [
             "loans" => $loans,
-            "pickup_deadline" => $pickup_deadline
+            "pickup_deadline" => $pickup_deadline,
+            "return_deadline" => $return_deadline
         ]);
     }
 
@@ -46,6 +48,11 @@ class DashboardLoanController extends Controller
     public function store(Request $request)
     {
         $loan_limit = Loans::where("user_id", auth()->user()->id)->where('acceptance_status', '!=' , 0)->orWhereNull('acceptance_status')->get()->count();
+        $target_book_stock = Books::where("id", $request->book_id)->get();
+
+        if($target_book_stock[0]->total_units === 0) {
+            return redirect("/dashboard/loan/create")->with("failed", "This book is out of stock !");
+        }
 
         if(!auth()->user()->studentID_image) {
             return redirect("/dashboard/loan/create")->with("failed", "Please upload your Student ID File to borrow a book");

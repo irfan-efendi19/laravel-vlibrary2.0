@@ -17,6 +17,12 @@
   </div>
 @endif
 
+@if (session()->has("failed"))
+  <div class="alert alert-danger col-lg-6" role="alert">
+    {{ session("failed") }}
+  </div>
+@endif
+
 <div class="table-responsive col-lg-8">
     <a href="/dashboard/authors/create" class="btn btn-success mb-2">New</a>
     <table class="table table-striped table-sm">
@@ -40,7 +46,7 @@
                     <a href="/dashboard/authors/{{ $a->slug }}/edit" class="badge bg-warning text-decoration-none">
                         EDIT
                     </a>
-                    <form action="/dashboard/authors/{{ $a->slug }}" method="POST" class="d-inline">
+                    <form action="/dashboard/authors/{{ $a->id }}" method="POST" class="d-inline">
                       @method('delete')
                       @csrf
                       <button class="badge bg-danger border-0" onclick="return confirm('Are you sure want to delete ?');">DELETE</button>

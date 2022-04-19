@@ -14,6 +14,8 @@
                         <h5><span class="badge bg-opacity-25 bg-success text-success">Accepted</span></h5>
                     @elseif($l->acceptance_status === 0)
                         <h5><span class="badge bg-opacity-25 bg-danger text-danger">Rejected</span></h5>
+                    @elseif($l->acceptance_status === 2)
+                        <h5><span class="badge bg-opacity-25 bg-success text-success">Done</span></h5>
                     @else
                         <h5><span class="badge bg-opacity-100 bg-warning text-white">Waiting</span></h5>
                     @endif
@@ -25,7 +27,11 @@
                         <img src="{{ asset('storage/' . auth()->user()->studentID_image) }}" class="img-fluid w-50" alt="inet_err">
                     </div>
                     <p class="card-text d-inline"><strong>Message :</strong> {!! $l->body !!}</p>
-                    <p class="card-text"><strong> Pickup Deadline : </strong><span class="text-danger">{{ $pickup_deadline }}</span></p>
+                    
+                    @if($l->acceptance_status === 1)
+                        <p class="card-text"><strong> Pickup Deadline : </strong><span class="text-danger">{{ $pickup_deadline }}</span></p>
+                        <p class="card-text"><strong> Return Deadline : </strong><span class="text-danger">{{ $return_deadline }}</span></p>
+                   @endif
 
                     @if($l->acceptance_status === NULL)
                         <form action="/dashboard/loan/{{ $l->id }}" method="POST" class="d-inline">

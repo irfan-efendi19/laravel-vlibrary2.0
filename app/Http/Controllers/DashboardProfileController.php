@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Books;
 use App\Models\Comments;
 use App\Models\Likes;
+use App\Models\Loans;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -19,7 +20,10 @@ class DashboardProfileController extends Controller
      */
     public function index()
     {
-        return view("dashboard.profile.index");
+        $total_loans = Loans::where("user_id", auth()->user()->id)->where("acceptance_status", 1)->count();
+        return view("dashboard.profile.index", [
+            "total_loans" => $total_loans
+        ]);
     }
 
     /**

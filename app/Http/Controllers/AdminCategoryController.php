@@ -118,11 +118,19 @@ class AdminCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($slug)
+    public function destroy($id)
     {
-        $category = Categories::where( "slug", $slug )->get();
+        $category = Categories::where( "id", $id )->get();
         $category_name = $category[0]->name;
-        Categories::destroy($category);
+
+        $affected_books = Books::where("category_id", $id)->get();
+        $total_affected_books = $affected_books->count();
+        
+        if ($total_affected_books > 0) {
+            return redirect("/dashboard/categories")->with("failed", "There are $total_affected_books book(s) categorized as [ $category_name ] , can't delete this item !");
+        } else {
+            Categories::destroy($category);
+        }
 
         return redirect("/dashboard/categories")->with("warning", "[ $category_name ] has been deleted !");
     }

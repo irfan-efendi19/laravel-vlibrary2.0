@@ -117,10 +117,19 @@ class AdminAuthorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($slug)
+    public function destroy($id)
     {
-        $author = Authors::where( "slug", $slug )->get();
+        $author = Authors::where( "id", $id )->get();
         $author_name = $author[0]->name;
+
+        $affected_books = Books::where("author_id", $id)->get();
+        $total_affected_books = $affected_books->count();
+        
+        if ($total_affected_books > 0) {
+            return redirect("/dashboard/authors")->with("failed", "There are $total_affected_books book(s) written by [ $author_name ] , can't delete this item !");
+        } else {
+            Authors::destroy($author);
+        }
 
         Authors::destroy($author);
 
