@@ -46,7 +46,7 @@
                         <a href="/dashboard/books/{{ $b->slug }}/edit" class="badge bg-warning">
                             <i class="bi bi-pen-fill"></i>
                         </a>
-                        <form action="/dashboard/books/{{ $b->slug }}" method="POST" class="d-inline">
+                        <form action="/dashboard/books/{{ $b->id }}" method="POST" class="d-inline">
                           @method('delete')
                           @csrf
                           <button class="badge bg-danger border-0" onclick="return confirm('Are you sure want to delete this book ?');"><i class="bi bi-trash3-fill"></i></button>

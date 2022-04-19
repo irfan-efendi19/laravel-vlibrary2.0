@@ -45,6 +45,7 @@
                         <p class="text-danger"><i class="bi bi-exclamation-circle"></i> Student ID not attached</p>
                     @endif
                     <p class="card-text d-inline"><strong>Message :</strong> {!! $l->body !!}</p>
+                    <p class="card-text"><strong>Pickup Deadline : </strong> {{ $pickup_deadline }}</p>
                     @if($l->acceptance_status === NULL)
                         <a href="/dashboard/requests/{{ $l->id }}/accept" class="btn btn-success">Accept</a>
                         <a href="/dashboard/requests/{{ $l->id }}/reject" class="btn btn-danger">Reject</a>

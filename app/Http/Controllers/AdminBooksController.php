@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Authors;
 use App\Models\Books;
 use App\Models\Categories;
+use App\Models\Loans;
 use Illuminate\Http\Request;
 
 class AdminBooksController extends Controller
@@ -135,12 +136,14 @@ class AdminBooksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($slug)
+    public function destroy($id)
     {
-        $books = Books::where( "slug", $slug )->get();
-
+        $books = Books::where( "id", $id )->get();
+        $affected_loan = Loans::where("book_id", $id)->get();
+    
         $title = $books[0]->title;
         Books::destroy($books);
+        Loans::destroy($affected_loan);
 
         return redirect("/dashboard/books")->with("warning", "[ $title ] has been deleted permanently !");
     }

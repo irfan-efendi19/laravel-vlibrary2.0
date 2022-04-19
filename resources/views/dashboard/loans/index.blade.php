@@ -25,6 +25,7 @@
                         <img src="{{ asset('storage/' . auth()->user()->studentID_image) }}" class="img-fluid w-50" alt="inet_err">
                     </div>
                     <p class="card-text d-inline"><strong>Message :</strong> {!! $l->body !!}</p>
+                    <p class="card-text"><strong> Pickup Deadline : </strong><span class="text-danger">{{ $pickup_deadline }}</span></p>
 
                     @if($l->acceptance_status === NULL)
                         <form action="/dashboard/loan/{{ $l->id }}" method="POST" class="d-inline">

@@ -28,6 +28,7 @@
                 <h6 class="mb-3"><strong>Publisher :</strong> {{ $publisher }}</h6>
                 <h6 class="mb-3"><strong>Publication year :</strong> {{ $publication_year }}</h6>
                 <h6 class="mb-3"><strong>Total Pages :</strong> {{ $total_pages }} pages</h6>
+                <h6 class="mb-3"><strong>Total Units :</strong> {{ $total_units }} pcs.</h6>
                 <h6 class="mb-3"><strong>Synopsis :</strong></h6>
                 {!! $body !!}
             </article>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Books;
 use App\Models\Loans;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DashboardLoanController extends Controller
@@ -16,9 +17,11 @@ class DashboardLoanController extends Controller
     public function index()
     {
         $loans = Loans::where("user_id", auth()->user()->id)->get();
+        $pickup_deadline = Carbon::tomorrow();
 
         return view("dashboard.loans.index", [
-            "loans" => $loans
+            "loans" => $loans,
+            "pickup_deadline" => $pickup_deadline
         ]);
     }
 

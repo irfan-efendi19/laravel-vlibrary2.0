@@ -2,19 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Books;
 use App\Models\Loans;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class LoanRequestsController extends Controller
 {
     public function index() {
+        $pickup_deadline = Carbon::tomorrow();
+
         return view("dashboard.request.index", [
-            "loans" => Loans::all()
+            "loans" => Loans::all(),
+            "pickup_deadline" => $pickup_deadline
         ]);
     }
 
     public function accept(Loans $loans) {
         Loans::where("id", $loans->id)->update(["acceptance_status" => 1]);
+        
+        $target_book = Books::where("id", $loans->book_id)->get();
+        Books::where("id", $loans->book_id)->update(["total_units" => $target_book[0]->total_units -= 1]);
+        
         return redirect("/dashboard/requests")->with("success", "A request was accepted !");
     }
 
@@ -33,6 +42,9 @@ class LoanRequestsController extends Controller
             }
             return redirect("/dashboard/requests")->with("failed", "The user has selected another book !");
         }
+
+        $target_book = Books::where("id", $loans->book_id)->get();
+        Books::where("id", $loans->book_id)->update(["total_units" => $target_book[0]->total_units += 1]);
 
         Loans::where("id", $loans->id)->update(["acceptance_status" => NULL]);
         return redirect("/dashboard/requests")->with("warning", "A request was cancelled !");

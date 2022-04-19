@@ -45,6 +45,7 @@ class SiteController extends Controller
             "publisher" => $books->publisher,
             "publication_year" => $books->published_at,
             "total_pages" => $books->total_pages,
+            "total_units" => $books->total_units,
             "liked" => $liked,
             "likes_total" => $likes_total,
             "comments" => $comments

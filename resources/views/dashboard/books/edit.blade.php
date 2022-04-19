@@ -144,7 +144,7 @@
         const title = document.querySelector("#title");
         const slug = document.querySelector("#slug");
 
-        title.addEventListener("change", function() {
+        title.addEventListener("keyup", function() {
             let preslug = title.value;
             preslug = preslug.replace(/ /g,"-");
             slug.value = preslug.toLowerCase();
