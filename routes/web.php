@@ -27,6 +27,7 @@ Route::get('/', [SiteController::class, "index"])->name("home")->middleware("ver
 Route::get('/books', [SiteController::class, "books"])->name("books")->middleware(["auth","verified"]);
 Route::get('/books/{books:slug}', [SiteController::class, "book"])->name("books")->middleware(["auth","verified"]);
 Route::get('/categories', [SiteController::class, "categories"])->name("categories")->middleware(["auth","verified"]);
+Route::get('/developers', [SiteController::class, "developers"])->name("developers")->middleware(["auth","verified"]);
 
 Route::post('/books/{books:slug}', [SiteController::class, "likes"])->name("books");
 Route::post("/books/{books:slug}/comment", [SiteController::class, "comments"])->middleware(["auth","verified"]);

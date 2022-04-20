@@ -17,9 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string("name");
             $table->string("role");
-            $table->string("profession");
             $table->string("region");
-            $table->text("bio");
             $table->string("instagram_link");
             $table->string("github_link");
             $table->string("email_link");

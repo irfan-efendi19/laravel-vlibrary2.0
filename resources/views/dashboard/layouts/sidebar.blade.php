@@ -30,7 +30,7 @@
             <li><a class="dropdown-item" href="/books"><i class="bi bi-dash-square-dotted"></i>Books</a></li>
             <li><a class="dropdown-item" href="/categories"><i class="bi bi-dash-square-dotted"></i>Categories</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#"><i class="bi bi-dash-square-dotted"></i>Developers</a></li>
+            <li><a class="dropdown-item" href="/developers"><i class="bi bi-dash-square-dotted"></i>Developers</a></li>
             <li></li>
           </ul>
         </li>

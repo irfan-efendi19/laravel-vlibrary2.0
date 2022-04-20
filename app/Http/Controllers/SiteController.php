@@ -6,6 +6,7 @@ use App\Models\Authors;
 use App\Models\Books;
 use App\Models\Categories;
 use App\Models\Comments;
+use App\Models\Developers;
 use App\Models\Likes;
 
 use Illuminate\Http\Request;
@@ -97,10 +98,11 @@ class SiteController extends Controller
         return redirect("/books/$books->slug")->with("success", "Your comment has been uploaded publicly !");
     }
 
-    public function developer() {
+    public function developers() {
         return view("developer",[
             "name" => env("APP_NAME"),
-            "pageName" => "Developer"
+            "pageName" => "Developers",
+            "developers" => Developers::all()
         ]);
     }
 }

@@ -5,6 +5,12 @@
         <h1 class="h2">All Developers</h1>
     </div>
 
+    @if (session()->has("success"))
+      <div class="alert alert-success col-lg-8" role="alert">
+        {{ session("success") }}
+      </div>
+    @endif
+
     <div class="table-responsive col-lg-8">
         <a href="/dashboard/developers/create" class="btn btn-success mb-2">New</a>
         <table class="table table-striped table-sm">
@@ -23,7 +29,7 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $d->name }}</td>
                     <td>{{ $d->role }}</td>
-                    <td>{{ $b->created_at }}</td>
+                    <td>{{ $d->created_at }}</td>
                     <td>
                         
                         <a href="/dashboard/developers/{{ $d->id }}" class="badge bg-primary">
@@ -35,7 +41,7 @@
                         <form action="/dashboard/developers/{{ $d->id }}" method="POST" class="d-inline">
                           @method('delete')
                           @csrf
-                          <button class="badge bg-danger border-0" onclick="return confirm('Are you sure want to delete this book ?');"><i class="bi bi-trash3-fill"></i></button>
+                          <button class="badge bg-danger border-0" onclick="return confirm('Are you sure want to remove this developer ?');"><i class="bi bi-trash3-fill"></i></button>
                         </form>                      
                     </td>
                 </tr>
