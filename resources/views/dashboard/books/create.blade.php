@@ -89,6 +89,17 @@
             </div>
 
             <div class="mb-3">
+                <label for="isbn" class="form-label">ISBN</label>
+                <input type="text" class="form-control @error('isbn') is-invalid @enderror" id="isbn" name="isbn"
+                value="{{ old('isbn') }}">
+                @error("isbn")
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+              </div>
+
+            <div class="mb-3">
               <label for="total_pages" class="form-label">Total of Pages</label>
               <input type="number" class="form-control @error('total_pages') is-invalid @enderror" id="total_pages" name="total_pages"
               value="{{ old('total_pages') }}">

@@ -2,7 +2,7 @@
 
 @section('container')
 
-    <div class="row container justify-content-center mt-5">
+    <div class="container justify-content-center mt-5">
         <div class="col-md-6 d-flex">
             <form action="/books" method="GET" class="me-3">
                 @if (request(["category"]))

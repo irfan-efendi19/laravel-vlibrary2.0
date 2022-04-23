@@ -49,6 +49,7 @@ class AdminBooksController extends Controller
             "slug" => "required|unique:books",
             "publisher" => "required|max:255",
             "published_at" => "required|max:4",
+            "isbn" => "required",
             "total_pages" => "required",
             "total_units" => "required",
             "category_id" => "required",
@@ -117,6 +118,7 @@ class AdminBooksController extends Controller
             "body" => "required",
             "publisher" => "required",
             "published_at" => "required",
+            "isbn" => "required",
             "total_pages" => "required",
             "total_units" => "required",
         ];

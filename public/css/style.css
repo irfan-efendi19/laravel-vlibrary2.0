@@ -9,141 +9,169 @@ html, body {
     height: 97%;
 }
 
-/* HOME START */
+/* HOME PAGE START */
 
-.home-container {
-    background-color: rgb(230, 230, 230);
-    padding: 0;
+/* Intro Page
+--------------------- */
+
+#intro {
+    position: relative;
+    overflow: hidden;
+    min-height: 600px;
+    padding-top: 9em;
 }
 
-.left-side-text-container {
-    width: 50%;
+#intro .top-right-gradient {
+    position: absolute;
+    top: -40%;
+    right: -30%;
+    width: 800px;
+    height: 800px;
+    border-radius: 50%;
+    background: linear-gradient(#ee9ca7, #ec4357);
 }
 
-.left-side-container, .right-side-container {
-    width: 50%;
-    height: 100%;
-    /* border: 1px solid black; */
-}
-
-.get-started-btn, .learn-more-btn {
-    text-transform: uppercase;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-}
-
-/* Home END */
-
-
-/* CAROUSEL STYLE START */
-.carousel-image {
-    height: 450px;
-}
-
-.carousel-caption h4 {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-}
-
-.welcome-msg {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    color: #fff;
-    text-transform: uppercase;
-}
-
-.captions-msg {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 200;
-    color: #fff;
-}
-
-.carousel-container {
+#intro .intro-left {
+    display: inline-block;
     width: 100%;
+    max-width: 400px;
+    padding: 3em 0;
 }
 
-.right-side-container {
-    padding: 0 80px;
+#intro .intro-left h1 {
+    font-size: 2.5em;
+    color: #241b57;
+    line-height: 1.5em;
+    position: relative;
+    margin-bottom: 1em;
 }
 
-/* CAROUSEL STYLE END */
-
-/* NECK STYLE START */
-.neck-container {
-    height: 418px;
-    width: 100%;
-    
+#intro .intro-left h1:after {
+    position: absolute;
+    bottom: -24px;
+    left: 0;
+    width: 40px;
+    height: 4px;
+    content: "";
+    border-radius: 5px;
+    background: #ec4357;
+    opacity: 0.4;
 }
 
-.neck-item-container {
-    height: 250px;
-    width: 250px;
-    /* padding: 10px 18px; */
+#intro .intro-left p {
+    font-size: 1.125em;
+    line-height: 1.75em;
 }
 
-.neck-title {
-    height: 15%;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-}
-
-.neck-logo {
-    height: 35%;
-}
-
-.neck-caption {
-    height: 50%;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 200;
-}
-
-.book-cartoon, .customer-service {
+#intro .intro-left a.intro-cta {
+    font-weight: 500;
     display: block;
-    margin: 0 auto;
-    height: 80%;
+    width: 100%;
+    max-width: 180px;
+    margin-top: 2em;
+    padding: 1em;
+    text-align: center;
+    color: #fff;
+    border-radius: 3px;
 }
 
-/* NECK STYLE END */
-
-
-/* ABOUT-US STYLE START */
-
-.about-us-container {
-    height: 500px;
-    font-family: 'Poppins', sans-serif;
-    justify-content: space-around;
+#intro .intro-right {
+    position: relative;
+    display: inline-block;
+    margin-left: 15em;
+    padding-top: 80px;
 }
 
-.about-us-right-container {
-    height: 100%;
-    width: 35%;
+#intro .intro-right img {
+    max-width: 600px;
+    height: 400px;
 }
 
-.about-us-left-container {
-    height: 100%;
-    width: 35%;
-    flex-direction: column; 
-    justify-content: center; 
+#intro .bottom-left-gradient {
+    position: absolute;
+    bottom: 10px;
+    left: -9%;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: linear-gradient(#c779d0, #4bc0c8);
 }
 
-.about-us-title {
+/* ABOUT PAGE START */
+
+.about-section{
+    background: url(../img/about/lib.jpg) no-repeat left;
+    background-size: 100%;
+    background-color: #fdfdfd;
+    overflow: hidden;
+    padding: 100px 0;
+}
+
+.inner-container{
+    width: 55%;
+    float: right;
+    background-color: #fdfdfd;
+    padding: 150px;
+}
+
+.inner-container h1{
+    margin-bottom: 30px;
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.text{
+    /* font-size: 13px; */
+    /* color: #545454; */
+    line-height: 30px;
+    text-align: justify;
+    margin-bottom: 40px;
+}
+
+.skills{
+    display: flex;
+    justify-content: space-between;
     font-weight: 700;
-    text-transform: uppercase;
+    font-size: 13px;
 }
 
-.about-us-captions, .about-us-subcaptions {
-    font-weight: 200;
+/* ABOUT PAGE END */
+
+/* Page Banner */
+
+.page-banner {
+    background: url("../img/home/banner.png") no-repeat;
+    background-size: cover;
+    padding: 130px;
+    width: 100%;
+    text-align: center;
+    margin: 0;
 }
 
-.reading-img {
-    height: 75%;
+.page-banner h1 {
+    font-size: 2.8em;
+    font-weight: 500;
+    color: #fff;
 }
 
-.video-player {
-    width: 75%;
-    height: 50%;
+.page-banner h3 {
+    color: #fff;
+    margin-bottom: 35px;
+    font-weight: 300;
 }
 
-/* ABOUT-US STYLE END */
+.page-banner a {
+    color: #fff;
+    font-weight: 400;
+    max-width: 400px;
+    margin: 3em 0;
+    padding: 1em 3em;
+    text-align: center;
+    border-radius: 3px;
+    background: #241b57;
+}
+
+/* HOME PAGE END */
 
 /* DEVELOPERS PAGE START */
 
@@ -182,7 +210,6 @@ html, body {
     left: 0;
     opacity: 0.9;
     z-index: -2;
-
     transform: scale(3);
     transition: all 0.3s linear 0s;
     background: rgba(120, 120, 250, 1);
@@ -268,110 +295,91 @@ html, body {
 /* CSS MEDIA QUERY */
 /* Lebar Handphone Minimum : 336px */
 
-@media screen and (max-width: 480px) {
-    .carousel-image {
-        height: 350px;
+@media screen and (min-width: 992px) {
+    .about-section {
+        margin: 100px 0;
     }
 }
 
-@media screen and (max-width: 576px) {
-    .right-side-container {
-        width: 40%;
+@media screen and (max-width: 640px) {
+    #intro {
+        min-height: 400px;
+        padding-top: 6em;
+    }
+  
+    #intro {
+      max-height: 300px !important;
+      text-align: center;
+      display: flex;
+      height: 100%;
+      flex-direction: column;
+      justify-content: space-around;
+      margin-top: 40px !important;
     }
 
-    .about-us-left-container {
-        text-align: center;
-        height: 60%;
+    #intro .intro-right img {
+      width: 380px;
     }
-
-    .about-us-right-container {
-        height: 40%;
+  
+    #intro h1 {
+      font-size: 24px !important;
     }
-
-    .about-us-container {
-        flex-direction: column-reverse;
-        height: 750px;
+  
+    #intro h1::after {
+      margin-left: 180px;
+      margin-bottom: 10px;
     }
-}
-
-@media screen and (max-width: 768px) {
-    .home-container {
-        flex-direction: column-reverse;
+  
+    #intro .intro-left .intro-cta {
+      display: inline-block !important;
     }
-
-    .left-side-container, .right-side-container {
-        width: 100%;
+  
+    /* banner responsive */
+  
+    .page-banner {
+      padding: 100px 0;
+      text-align: center;
+      background-position: center;
     }
-
-    .left-side-container {
-        text-align: center;
+  
+    .page-banner h1 {
+      font-size: 28px !important;
+      font-weight: 700;
     }
-
-    .neck-container {
-        height: 1000px;
-        width: 100%;
-        flex-direction: column;
+  
+    .page-banner h3 {
+      font-size: 16px !important;
+      margin-top: 10px;
     }
 }
 
 @media screen and (max-width: 992px) {
-    .right-side-container {
-        padding: 0 0;
+    .undraw-growth {
+        display: none;
     }
+}
 
-    .about-us-container {
-        flex-direction: column-reverse;
+@media screen and (max-width:1200px){
+    .inner-container{
+        padding: 80px;
     }
+}
 
-    .about-us-left-container, .about-us-right-container {
+@media screen and (max-width:1000px){
+    .about-section{
+        background-size: 100%;
+        padding: 100px 40px;
+    }
+    .inner-container{
         width: 100%;
+    }
+}
+
+@media screen and (max-width:600px){
+    .about-section{
         padding: 0;
     }
-
-    .about-us-right-container {
-        height: 30%;
-    }
-    
-    .about-us-left-container {
-        height: 70%;
-        text-align: center;
-    }
-
-    .video-player {
-        height: 95%;
-    }
-}
-
-@media screen and (max-width: 1200px) {
-    .left-side-text-container {
-        width: 75%;
-    }
-}
-
-@media screen and (min-width: 360px) {
-    .about-us-left-container {
-        padding: 0 30px;
-    }
-}
-
-@media screen and (min-width: 576px) {
-    .about-us-left-container {
-        padding: 0 70px;
-    }
-}
-
-@media screen and (min-width: 768px) {
-    .about-us-left-container {
-        padding: 0 100px;
-    }
-}
-
-@media screen and (min-width: 992px) {
-    .about-us-left-container {
-        padding: 0 0;
-    }
-
-    .about-us-container {
-        justify-content: center;
+    .inner-container{
+        padding: 60px;
     }
 }

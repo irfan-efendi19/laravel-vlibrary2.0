@@ -23,6 +23,7 @@ return new class extends Migration
             $table->text("book_image")->nullable();
             $table->string("publisher");
             $table->string("published_at");
+            $table->string("isbn");
             $table->integer("total_pages");
             $table->integer("total_units");
             $table->integer("likes")->default(0);
