@@ -97,7 +97,7 @@
                     {{ $message }}
                 </div>
                 @enderror
-              </div>
+            </div>
 
             <div class="mb-3">
               <label for="total_pages" class="form-label">Total of Pages</label>

@@ -43,7 +43,7 @@
                 <td>{{ $a->region }}</td>
                 <td>{{ $books->where("author_id", $a->id)->count() }} unit(s)</td>
                 <td>
-                    <a href="/dashboard/authors/{{ $a->slug }}/edit" class="badge bg-warning text-decoration-none">
+                    <a href="/dashboard/authors/{{ $a->id }}/edit" class="badge bg-warning text-decoration-none">
                         EDIT
                     </a>
                     <form action="/dashboard/authors/{{ $a->id }}" method="POST" class="d-inline">

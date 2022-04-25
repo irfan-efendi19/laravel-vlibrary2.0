@@ -52,6 +52,8 @@ class DevelopersListController extends Controller
             "dev_photo" => "required|file|image|max:2024",
         ]);
 
+        $validatedData["region"] = strtolower($validatedData["region"]);
+
         if($request->file("dev_photo")) {
             $validatedData["dev_photo"] = $request->file("dev_photo")->store("dev_photo/" . $request["name"]);
         }
@@ -69,10 +71,10 @@ class DevelopersListController extends Controller
      */
     public function show($id)
     {
-        $developers = Developers::where( "id", $id )->get();
+        $developer = Developers::find( $id );
 
         return view("dashboard.developers.show", [
-            "developers" => $developers,
+            "developer" => $developer,
         ]);
     }
 
@@ -84,12 +86,12 @@ class DevelopersListController extends Controller
      */
     public function edit($id)
     {
-        $developers = Developers::where( "id", $id )->get();
+        $developer = Developers::find( $id );
         $regions = file_get_contents(base_path() . "/regions.json");
         $regions = json_decode($regions, true);
 
         return view("dashboard.developers.edit", [
-            "developers" => $developers,
+            "developer" => $developer,
             "regions" => $regions
         ]);
     }
@@ -103,8 +105,7 @@ class DevelopersListController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $developers = Developers::where( "id", $id )->get();
-        $dev_name = $developers[0]->name;
+        $developer = Developers::find( $id );
 
         $rules = [
             "name" => "required|max:255",
@@ -118,9 +119,9 @@ class DevelopersListController extends Controller
         $rules["region"] = strtolower($rules["region"]);
         $validatedData = $request->validate($rules);
         
-        Developers::where( "id", $id )->update($validatedData);
+        Developers::find( $id )->update($validatedData);
 
-        return redirect("/dashboard/developers")->with("success", "[ $dev_name ] has been updated publicly");
+        return redirect("/dashboard/developers")->with("success", "[ $developer->name ] has been updated publicly");
     }
 
     /**
@@ -131,10 +132,10 @@ class DevelopersListController extends Controller
      */
     public function destroy($id)
     {
-        $developer = Developers::where( "id", $id )->get();
-        $developer_name = $developer[0]->name;
+        $developer = Developers::find( $id )->get();
+
         Developers::destroy($developer);
 
-        return redirect("/dashboard/developers")->with("warning", "[ $developer_name ] has been removed !");
+        return redirect("/dashboard/developers")->with("warning", "[ $developer->name ] has been removed !");
     }
 }

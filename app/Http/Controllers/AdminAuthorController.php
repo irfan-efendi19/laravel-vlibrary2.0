@@ -77,7 +77,7 @@ class AdminAuthorController extends Controller
      */
     public function edit($id)
     {
-        $author = Authors::where("slug", $id)->get();
+        $author = Authors::find($id);
 
         return view("dashboard.authors.edit", [
             "author" => $author
@@ -91,10 +91,9 @@ class AdminAuthorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $slug)
+    public function update(Request $request, $id)
     {
-        $author = Authors::where( "slug", $slug )->get();
-        $author_name = $author[0]->name;
+        $author = Authors::find($id);
 
         $rules = [
             "name" => "required|max:255",
@@ -104,11 +103,11 @@ class AdminAuthorController extends Controller
 
         $validatedData = $request->validate($rules);
         
-        $validatedData["id"] = $author[0]->id;
+        $validatedData["id"] = $author->id;
         
-        Authors::where( "slug", $slug )->update($validatedData);
+        Authors::find($id)->update($validatedData);
 
-        return redirect("/dashboard/authors")->with("success", "[ $author_name ] has been updated publicly !");
+        return redirect("/dashboard/authors")->with("success", "[ $author->name ] has been updated publicly !");
     }
 
     /**
@@ -119,20 +118,17 @@ class AdminAuthorController extends Controller
      */
     public function destroy($id)
     {
-        $author = Authors::where( "id", $id )->get();
-        $author_name = $author[0]->name;
+        $author = Authors::find($id);
 
         $affected_books = Books::where("author_id", $id)->get();
         $total_affected_books = $affected_books->count();
         
         if ($total_affected_books > 0) {
-            return redirect("/dashboard/authors")->with("failed", "There are $total_affected_books book(s) written by [ $author_name ] , can't delete this item !");
-        } else {
-            Authors::destroy($author);
+            return redirect("/dashboard/authors")->with("failed", "There are $total_affected_books book(s) written by [ $author->name ] , can't delete this item !");
         }
 
-        Authors::destroy($author);
+        Authors::destroy($author->id);
 
-        return redirect("/dashboard/authors")->with("warning", "[ $author_name ] has been deleted !");
+        return redirect("/dashboard/authors")->with("warning", "[ $author->name ] has been deleted !");
     }
 }

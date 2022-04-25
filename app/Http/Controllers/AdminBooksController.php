@@ -53,7 +53,6 @@ class AdminBooksController extends Controller
             "total_pages" => "required",
             "total_units" => "required",
             "category_id" => "required",
-            "book_image" => "required|image|file|max:2024",
             "body" => "required",
         ]);
 
@@ -72,12 +71,12 @@ class AdminBooksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-        $books = Books::where( "slug", $slug )->get();
+        $book = Books::find($id);
 
         return view("dashboard.books.show", [
-            "books" => $books,
+            "book" => $book,
         ]);
     }
 
@@ -87,12 +86,12 @@ class AdminBooksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit($id)
     {
-        $books = Books::where( "slug", $slug )->get();
+        $book = Books::find($id);
 
         return view("dashboard.books.edit", [
-            "books" => $books,
+            "book" => $book,
             "authors" => Authors::all(),
             "categories" => Categories::all(),
         ]);
@@ -105,14 +104,12 @@ class AdminBooksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $slug)
+    public function update(Request $request, $id)
     {
-        $book = Books::where( "slug", $slug )->get();
-        $book_title = $book[0]->title;
+        $book = Books::find($id);
 
         $rules = [
             "title" => "required|max:255",
-            "slug" => "required",
             "author_id" => "required",
             "category_id" => "required",
             "body" => "required",
@@ -120,14 +117,20 @@ class AdminBooksController extends Controller
             "published_at" => "required",
             "isbn" => "required",
             "total_pages" => "required",
-            "total_units" => "required",
+            "total_units" => "required"
         ];
+
+        if($request->slug != $book->slug) {
+            $rules["slug"] = 'required|unique:books';
+        }
 
         $validatedData = $request->validate($rules);
         
-        Books::where( "slug", $slug )->update($validatedData);
+        $validatedData["id"] = $book->id;
+        
+        Books::find($id)->update($validatedData);
 
-        return redirect("/dashboard/books")->with("success", "[ $book_title ] has been updated publicly");
+        return redirect("/dashboard/books")->with("success", "[ $book->title ] has been updated publicly !");
     }
 
     /**
@@ -138,13 +141,12 @@ class AdminBooksController extends Controller
      */
     public function destroy($id)
     {
-        $books = Books::where( "id", $id )->get();
+        $book = Books::find($id);
         $affected_loan = Loans::where("book_id", $id)->get();
     
-        $title = $books[0]->title;
-        Books::destroy($books);
+        Books::destroy($book->id);
         Loans::destroy($affected_loan);
 
-        return redirect("/dashboard/books")->with("warning", "[ $title ] has been deleted permanently !");
+        return redirect("/dashboard/books")->with("warning", "[ $book->title ] has been deleted permanently !");
     }
 }

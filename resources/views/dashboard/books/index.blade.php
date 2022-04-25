@@ -40,10 +40,10 @@
                     <td>{{ $b->created_at }}</td>
                     <td>
                         
-                        <a href="/dashboard/books/{{ $b->slug }}" class="badge bg-primary">
+                        <a href="/dashboard/books/{{ $b->id }}" class="badge bg-primary">
                             <i class="bi bi-eye-fill"></i>
                         </a>
-                        <a href="/dashboard/books/{{ $b->slug }}/edit" class="badge bg-warning">
+                        <a href="/dashboard/books/{{ $b->id }}/edit" class="badge bg-warning">
                             <i class="bi bi-pen-fill"></i>
                         </a>
                         <form action="/dashboard/books/{{ $b->id }}" method="POST" class="d-inline">

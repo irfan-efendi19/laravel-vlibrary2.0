@@ -6,46 +6,44 @@
     </div>
 
     <div class="col-lg-8">
-        @foreach ($author as $a)  
-            <form method="POST" action="/dashboard/authors/{{ $a->slug }}">
-                @method("put")
-                @csrf
-                <div class="mb-3">
-                    <label for="name" class="form-label">Full Name</label>
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" autofocus
-                    value="{{ $a->name }}">
-                    @error("name")
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-
-                <div class="mb-3">
-                    <label for="slug" class="form-label">Slug</label>
-                    <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug"
-                    value="{{ $a->slug }}">
-                    @error("slug")
+        <form method="POST" action="/dashboard/authors/{{ $author->id }}">
+            @method("put")
+            @csrf
+            <div class="mb-3">
+                <label for="name" class="form-label">Full Name</label>
+                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" autofocus
+                value="{{ $author->name }}">
+                @error("name")
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
-                    @enderror
-                </div>
+                @enderror
+            </div>
 
-                <div class="mb-3">
-                    <label for="region" class="form-label">Region</label>
-                    <input type="text" class="form-control @error('region') is-invalid @enderror" id="region" name="region" autofocus
-                    value="{{ $a->region }}">
-                    @error("region")
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
+            <div class="mb-3">
+                <label for="slug" class="form-label">Slug</label>
+                <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug"
+                value="{{ $author->slug }}">
+                @error("slug")
+                <div class="invalid-feedback">
+                    {{ $message }}
                 </div>
+                @enderror
+            </div>
 
-                <button type="submit" class="btn btn-primary">Confirm</button>
-            </form>
-        @endforeach
+            <div class="mb-3">
+                <label for="region" class="form-label">Region</label>
+                <input type="text" class="form-control @error('region') is-invalid @enderror" id="region" name="region" autofocus
+                value="{{ $author->region }}">
+                @error("region")
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+
+            <button type="submit" class="btn btn-primary">Confirm</button>
+        </form>
     </div>
 
     <script>

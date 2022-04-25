@@ -6,13 +6,13 @@
     </div>
 
     <div class="col-lg-8">
-        <form method="POST" action="/dashboard/categories/{{ $category_slug }}">
+        <form method="POST" action="/dashboard/categories/{{ $category->id }}">
             @method("put")
             @csrf
             <div class="mb-3">
                 <label for="title" class="form-label">Category's Name</label>
                 <input type="text" class="form-control @error('category_name') is-invalid @enderror" id="name" name="name" autofocus
-                value="{{ old('category_name', $category_name) }}">
+                value="{{ old('category_name', $category->name) }}">
                 @error("category_name")
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -23,7 +23,7 @@
             <div class="mb-3">
                 <label for="slug" class="form-label">Slug</label>
                 <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug"
-                value="{{ old('slug', $category_slug) }}">
+                value="{{ old('slug', $category->slug) }}">
                 @error("slug")
                 <div class="invalid-feedback">
                     {{ $message }}

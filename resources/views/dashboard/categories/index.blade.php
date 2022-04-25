@@ -43,11 +43,7 @@
                 </td>
                 <td>{{ $c->created_at }}</td>
                 <td>
-                    
-                    {{-- <a href="/dashboard/categories/{{ $c->slug }}" class="badge bg-primary">
-                        <span data-feather="eye"></span>
-                    </a> --}}
-                    <a href="/dashboard/categories/{{ $c->slug }}/edit" class="badge bg-warning text-decoration-none">
+                    <a href="/dashboard/categories/{{ $c->id }}/edit" class="badge bg-warning text-decoration-none">
                         EDIT
                     </a>
                     <form action="/dashboard/categories/{{ $c->id }}" method="POST" class="d-inline">
